@@ -1,0 +1,19 @@
+{
+  "name": "yip",
+  "version": "1.0.0",
+  "description": "Barc IIT KGP",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KhirwalSumeet/yip.git"
+  },
+  "author": "Sumeet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KhirwalSumeet/yip/issues"
+  },
+  "homepage": "https://github.com/KhirwalSumeet/yip#readme"
+}
