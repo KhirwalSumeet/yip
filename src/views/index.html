@@ -1,0 +1,20 @@
+<% extends "templates/basic.html" %>
+
+<% block header %>
+<$ super() $>
+	<link rel="stylesheet" type="text/css" href="/barc/yip/assets/css/home.css">
+	<link rel="stylesheet" type="text/css" href="/barc/yip/assets/css/signup.css">
+<% endblock %>
+
+<% block body %>
+
+<% include "partials/jumbotron.html" %>	
+<$ super() $>
+	<% include "partials/cards.html" %>
+<% endblock %>
+
+<% block scripts %>
+<$ super() $>
+	<script type="text/javascript" src="/barc/yip/assets/js/home.js"></script>
+	<script type="text/javascript" src="/barc/yip/assets/js/navbar.js"></script>
+<% endblock %>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% block header %>
+	<title> <$ title $> </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/barc/yip/external/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/barc/yip/assets/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/barc/yip/assets/css/footer.css">
+	<script type="text/javascript" src="/barc/yip/external/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/barc/yip/external/bootstrap/js/bootstrap.min.js"></script>
+	<% endblock %>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+	<% block body %>
+	<% include "partials/navbar.html" %>
+	<% endblock %>
+	<% include "partials/footer.html" %>
+	<% block scripts %>
+	<% endblock %>
+</body>
+</html>

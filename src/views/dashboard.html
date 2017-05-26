@@ -1,0 +1,176 @@
+<% extends "templates/basic.html" %>
+
+<% block header %>
+<$ super() $>
+	<link rel="stylesheet" type="text/css" href="/barc/yip/external/angular/xeditable.min.css">
+	<link rel="stylesheet" type="text/css" href="/barc/yip/assets/css/dashboard.css">
+	<script type="text/javascript" src="/barc/yip/external/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/barc/yip/external/angular/xeditable.min.js"></script>
+	<script type="text/javascript" src="/barc/yip/assets/js/dashboard.js"></script>
+<% endblock %>
+
+<% block body %>
+<$ super() $>
+<div ng-app="dashboard" ng-controller="dashboardController">
+	<div class="content container-fluid">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header">
+						<h3> Teacher details </h3>
+					</div>
+					<hr class="card-heading-seperator"/>
+					<div class="card-block"> 
+						<form editable-form name="editableForm" onaftersave="updateTeacher()">
+						    <div>
+						      	<!-- <span class="title">Name: </span> -->
+						      	<span>{{ data.user.name }}</span>
+						    </div> 
+						    <div>
+							    <!-- <span class="title">Email: </span> -->
+							    <span>{{ data.user.email }}</span>
+    						</div>  
+						    <div>
+						      	<!-- <span class="title">Phone: </span> -->
+						      	<span editable-text="data.user.phone" e-name="phone" e-placeholder="Phone no.">{{ data.user.phone || 'Phone no.' }}</span>
+						    </div>
+							<div>
+						      	<!-- <span class="title">Address: </span> -->
+						      	<span editable-textarea="data.user.address" e-name="address" e-placeholder="Address">{{ data.user.address || 'Address'}}</span>
+						    </div>
+						    <div>
+						      	<!-- <span class="title">Emergency: </span> -->
+						      	<span editable-text="data.user.emergency" e-name="emergency" e-placeholder="Emergency contact">{{ data.user.emergency || 'Emergency contact'}}</span>
+						    </div>
+							<div class="buttons">
+      							<button type="button" class="btn btn-primary" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">Edit</button>
+							    <span ng-show="editableForm.$visible">
+							        <button type="submit" class="btn btn-success" ng-disabled="editableForm.$waiting">
+							          Save
+							        </button>
+							        <button type="button" class="btn btn-warning" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+							          Cancel
+							        </button>
+							    </span>
+    						</div>
+  						</form>  
+					</div>
+				</div> 
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header">
+						<h3> School details </h3>
+					</div>
+					<hr class="card-heading-seperator"/>
+					<div class="card-block"> 
+						<form editable-form name="editableForm2" onaftersave="saveUser()">
+						    <div>
+						      	<!-- <span class="title">Name: </span> -->
+						      	<span>{{ data.school.name }}</span>
+						    </div> 
+						    <div>
+							    <!-- <span class="title">Email: </span> -->
+							    <span editable-text="data.school.email" e-name="email" e-placeholder="Email">{{ data.school.email || 'Email' }}</span>
+    						</div>  
+						    <div>
+						      	<!-- <span class="title">Phone: </span> -->
+						      	<span editable-text="data.school.phone" e-name="phone" e-placeholder="Contact">{{ data.school.phone || 'Contact' }}</span>
+						    </div>
+							<div>
+						      	<!-- <span class="title">Address: </span> -->
+						      	<span editable-textarea="data.school.address" e-name="address" e-placeholder="Address">{{ data.school.address || 'Address' }}</span>
+						    </div>
+						    <div>
+						      	<!-- <span class="title">Principal's Name: </span> -->
+						      	<span editable-text="data.school.principal.name" e-name="principalName" e-placeholder="Principal name">{{ data.school.principal.name || 'Principal name' }}</span>
+						    </div>
+						    <div>
+						      	<!-- <span class="title">Phone: </span> -->
+						      	<span editable-text="data.school.principal.phone" e-name="principalPhone" e-placeholder="Principal's phone no.">{{ data.school.principal.phone || 'Principal\'s phone no.' }}</span>
+						    </div>
+							<div class="buttons">
+      							<button type="button" class="btn btn-primary" ng-click="editableForm2.$show()" ng-show="!editableForm2.$visible">Edit</button>
+							    <span ng-show="editableForm2.$visible">
+							        <button type="submit" class="btn btn-success" ng-disabled="editableForm2.$waiting" ng-click="updateSchool()">
+							          Save
+							        </button>
+							        <button type="button" class="btn btn-warning" ng-disabled="editableForm2.$waiting" ng-click="editableForm2.$cancel()">
+							          Cancel
+							        </button>
+							    </span>
+    						</div>
+  						</form>  
+					</div>
+				</div> 
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-sm-8">
+				<hr>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div class="col-sm-12 center">
+					<h3>Teams</h3>
+				</div>
+				<form editable-form name="editable" onaftersave="saveUser()">
+					<div ng-repeat="(index, teams) in data.teams">
+						<div class="col-sm-12 center">
+							<h5>{{ teams.name }}</h5>
+						</div>
+						
+						<!-- <div class="row"> -->
+						  	<div ng-repeat="user in teams.students">
+						  		<div class="col-md-4 card">
+					  				<div class="card-block">
+					  					
+											<p editable-text="user.name" e-placeholder='Name'>{{ user.name || 'Name'}}</p>		  		
+											<p editable-text="user.standard" e-placeholder='Standard'>{{ user.standard || 'Standard'}}</p>		  		
+											<p editable-text="user.guardian" e-placeholder='Guardian'>{{ user.guardian || 'Guardian'}}</p>		  		
+											<p editable-text="user.phone" e-placeholder='Phone no.'>{{ user.phone || 'Phone' }}</p>
+										
+										
+					  				</div>
+						  		</div>
+						  	</div>
+					  	
+					  	<div ng-if="teams.students.length == 2">
+					  		<div class="col-sm-4 card emptyMem">
+					  			<button ng-click="addMember(teams)" class="btn btn-default">Add Member</button>
+					  		</div>
+					  	</div>
+						<!-- </div> -->
+					</div>
+				</form>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	  	<div class="buttons center">
+			<button type="button" class="btn btn-primary" ng-click="editable.$show()" ng-show="!editable.$visible">Edit teams</button>
+			<span ng-show="editable.$visible">
+		        <button type="submit" class="btn btn-success" ng-disabled="editable.$waiting" ng-click="updateTeam()">
+		          Save
+		        </button>
+		        <button type="button" class="btn btn-warning" ng-disabled="editable.$waiting" ng-click="editable.$cancel()">
+		          Cancel
+		        </button>
+		    </span>
+		</div>
+		<br>
+	  	<div class="row center">
+			<button type="button" class="btn btn-default" ng-click="addTeam(data)">Add team</button>
+	  	</div>
+	</div>
+</div>
+<% endblock %>
+
+<% block scripts %>
+<$ super() $>
+<% endblock %>
