@@ -2,7 +2,7 @@
 
 <% block header %>
 	<$ super() $>
-	<link rel="stylesheet" type="text/css" href="/barc/yip/assets/css/signup.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/signup.css">
 <% endblock %>
 
 <% block body %>
@@ -14,7 +14,7 @@
 			    	<h1>Register</h1> 
 			    </div>
 	            <div class="account-wall">
-	                <form class="form-signin" method="post" action="/barc/yip/api/register">
+	                <form class="form-signin" method="post" action="/api/register">
 			            <input class="form-control" type="text" name="schoolName" id="name" placeholder="School Name" />
 			            <input class="form-control" type="text" name="name" id="name" placeholder="Teacher Name" />
 			            <input class="form-control" type="email" name="email" id="email" placeholder="Email ID" />
@@ -25,7 +25,7 @@
 	                </form>
 	                <p class="error-message"></p>	
 	            </div>
-            	<a href="/barc/yip/login" class="text-center new-account">Already registered? Sign In </a><br><br>
+            	<a href="/login" class="text-center new-account">Already registered? Sign In </a><br><br>
         	</div>
     	</div>
 	</div>
@@ -33,5 +33,5 @@
 
 <% block scripts %>
 	<$ super() $>
-	<script type="text/javascript" src="/barc/yip/assets/js/signup.js"></script>
+	<script type="text/javascript" src="/assets/js/signup.js"></script>
 <% endblock %>

@@ -16,7 +16,7 @@ config.nunjuck = {
 };
 
 config.email = {
-    host: '203.110.240.245',
+    host: '184.73.149.225',
     port: 587,
     secure: false,
     auth: {

@@ -30,7 +30,7 @@ email.sendVerification = function(receiver, url, cb) {
             return;
         }
         config.logger.log('Message %s sent: %s', info.messageId, info.response);
-        cb();
+        cb(); 
     })
 }
 
